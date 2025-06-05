@@ -12,7 +12,16 @@ return {
           return client.name == "jdtls"
         end
         return true
-      end
+      end,
+      format_on_save = {
+        ignore_filetypes = {
+          -- For JS/JSX/TS/TSX uses dense-analysis/ale in ale.lua 
+          'javascript',
+          'javascriptreact',
+          'typescript',
+          'typescriptreact',
+        }
+      }
     },
   },
 }
