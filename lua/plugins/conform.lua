@@ -7,6 +7,7 @@ return {
       javascriptreact = { "eslint_d" },
       typescriptreact = { "eslint_d" },
       css = { "prettierd" },
+      clojure = { "cljfmt" },
     },
     format_after_save = {
       lsp_format = "fallback",
