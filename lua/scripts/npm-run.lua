@@ -5,7 +5,11 @@ local Terminal = require("toggleterm.terminal").Terminal
 
 local function run(scriptName)
   local script = Terminal:new({
-    cmd = "tmux new -A -s '" .. project.name .. " " .. scriptName .. "' '" .. "npm run " .. scriptName .. "'",
+    cmd = string.format(
+      "tmux new -A -s '%s' 'npm run %s && read -P \"Press Enter to exit.\"'",
+      project.name .. " " .. scriptName,
+      scriptName
+    ),
     direction = "float",
   })
   script:toggle()
