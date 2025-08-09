@@ -39,3 +39,17 @@ vim.api.nvim_create_user_command("NpmRun", function()
     end,
   })
 end, {})
+
+vim.api.nvim_create_user_command("NpmKillAll", function()
+  local output = io.popen("tmux ls -F '#{session_name}' | grep '" .. project.name .. "'")
+  if output == nil then
+    vim.print("Not found running scripts")
+    return
+  end
+  local sessionsRaw = output:read("*a")
+  local sessions = utils.split_lines(sessionsRaw)
+  for _, session in ipairs(sessions) do
+    os.execute("tmux kill-session -t '" .. session .. "'")
+  end
+  vim.print("Killed sessions", sessions)
+end, { desc = "Abort all running project scritps" })

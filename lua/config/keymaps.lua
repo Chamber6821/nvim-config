@@ -4,3 +4,4 @@
 
 vim.keymap.set({ "n", "i", "v" }, "hl", "<esc>")
 vim.keymap.set({ "n" }, "<leader>rs", ":NpmRun<CR>")
+vim.keymap.set({ "n" }, "<leader>rk", ":NpmKillAll<CR>")

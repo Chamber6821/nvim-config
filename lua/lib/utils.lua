@@ -21,4 +21,11 @@ return {
     end, gen)
     return tbl
   end,
+  split_lines = function(str)
+    local tbl = {}
+    for x in str:gmatch("[^\r\n]+") do
+      table.insert(tbl, x)
+    end
+    return tbl
+  end,
 }
