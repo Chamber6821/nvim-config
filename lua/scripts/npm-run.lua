@@ -1,9 +1,15 @@
 local fun = require("lib.fun")
 local utils = require("lib.utils")
 local project = require("scripts.project")
+local Terminal = require("toggleterm.terminal").Terminal
 
 local function run(scriptName)
-  os.execute("tmux new -d -s '" .. project.name .. " " .. scriptName .. "' '" .. "npm run " .. scriptName .. "'")
+  local script = Terminal:new({
+    cmd = "tmux new -A -s '" .. project.name .. " " .. scriptName .. "' '" .. "npm run " .. scriptName .. "'",
+    direction = "float",
+  })
+  script:toggle()
+  script:set_mode("?")
 end
 
 vim.api.nvim_create_user_command("NpmRun", function()
