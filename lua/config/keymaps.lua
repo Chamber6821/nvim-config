@@ -3,3 +3,4 @@
 -- Add any additional keymaps here
 
 vim.keymap.set({ "n", "i", "v" }, "hl", "<esc>")
+vim.keymap.set({ "n" }, "<leader>rs", ":NpmRun<CR>")
