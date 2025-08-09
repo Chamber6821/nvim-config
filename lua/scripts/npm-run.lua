@@ -41,17 +41,13 @@ vim.api.nvim_create_user_command("NpmRun", function()
     layout = {
       layout = {
         title = "Run script in tmux",
+        title_pos = "left",
         box = "vertical",
         border = "rounded",
         width = 0.8,
         height = 0.8,
-        {
-          box = "vertical",
-          title = "{source} {live} {flags}",
-          title_pos = "center",
-          { win = "input", height = 1, border = "bottom" },
-          { win = "list", border = "none" },
-        },
+        { win = "input", height = 1, border = "bottom" },
+        { win = "list", border = "none" },
       },
     },
     confirm = function(picker, item)
