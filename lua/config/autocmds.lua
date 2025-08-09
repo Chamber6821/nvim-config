@@ -15,3 +15,31 @@ vim.filetype.add({
     ["%.gitlab%-ci%.ya?ml"] = "yaml.gitlab",
   },
 })
+
+local project = require("scripts.project")
+local function findShadowWatchTarget()
+  local output = io.popen(
+    "ps aux | grep -E '"
+      .. project.name
+      .. "/node_modules\\S*shadow-cljs\\S*\\s+watch' | awk '{print $NF}' | tr -d '\\n:'"
+  )
+  if output == nil then
+    return nil
+  end
+  local target = output:read("*a")
+  if #target == 0 then
+    return nil
+  end
+  return target
+end
+
+vim.api.nvim_create_autocmd({ "BufReadPost" }, {
+  pattern = "*.cljs",
+  callback = function()
+    local target = findShadowWatchTarget()
+    if target == nil then
+      vim.print("Shadow watch target not found")
+    end
+    vim.cmd("ConjureShadowSelect " .. target)
+  end,
+})
