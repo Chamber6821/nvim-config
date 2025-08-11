@@ -22,12 +22,15 @@ vim.api.nvim_create_user_command("NpmRun", function()
     finder = function()
       local scripts = project.npm.loadScripts() or {}
       local nameColWidth = fun.max(fun.chain(fun.map(fun.length, fun.map(utils.first, scripts)), { 0 }))
-      local items = utils.reduce_to_table(fun.map(function(name, script)
-        return { name = name, text = utils.pad.right(name, " ", nameColWidth) .. " " .. script }
-      end, scripts))
-      table.sort(items, function(a, b)
-        return a.name < b.name
-      end)
+      local items = utils.reduce_to_table(
+        fun.map(
+          function(name, script)
+            return { name = name, text = utils.pad.right(name, " ", nameColWidth) .. " " .. script }
+          end,
+          scripts
+        )
+      )
+      table.sort(items, function(a, b) return a.name < b.name end)
       return items
     end,
     format = "text",

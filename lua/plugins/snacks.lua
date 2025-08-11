@@ -1,3 +1,4 @@
+---@type LazySpec
 return {
   "folke/snacks.nvim",
   ---@module "snacks"
@@ -26,5 +27,8 @@ return {
         },
       },
     },
+  },
+  keys = {
+    { "<leader>gl", function() Snacks.picker.git_log_file() end, desc = "Snacks.picker.git_log_file()" },
   },
 }
