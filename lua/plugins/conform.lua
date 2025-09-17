@@ -8,6 +8,7 @@ return {
       typescriptreact = { "eslint_d" },
       css = { "prettierd" },
       clojure = { "cljfmt" },
+      fish = {},
     },
     format_after_save = {
       lsp_format = "fallback",
