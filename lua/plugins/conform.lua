@@ -9,6 +9,7 @@ return {
       css = { "prettierd" },
       clojure = { "cljfmt" },
       fish = {},
+      python = { "blue" },
     },
     format_after_save = {
       lsp_format = "fallback",
